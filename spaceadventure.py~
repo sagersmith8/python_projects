@@ -1,0 +1,81 @@
+import pygame
+import random
+import time
+import threading
+import thread
+
+pygame.init()
+
+w = (0,0,0)
+size = (700,500)
+screen = pygame.display.set_mode(size)
+
+pygame.display.set_caption("Space Adventure")
+
+done = False
+clock = pygame.time.Clock()
+screen.fill(w)
+clock.tick(60)
+font = pygame.font.SysFont("monospace", 35)
+
+def update():
+    while True:
+        screen.fill(w)
+        pygame.display.update()
+        pygame.time.delay(50)
+
+def scrollingText(text):
+    label = font.render(text, 1, (255,255,0))
+
+    for i in range(0, 400):
+        screen.blit(label, (700 / 2 -  label.get_width() /2, 400-i))
+        pygame.display.update()
+        pygame.time.delay(25)
+
+
+try:
+#    thread.start_new_thread(update,())
+    thread.start_new_thread(scrollingText, ("Space Adventure",))
+#    pygame.time.delay(1000)
+#    thread.start_new_thread(scrollingText, ("Sage is cool",))
+
+except:
+    print "Error"
+
+while not done:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+        if event.type== pygame.KEYDOWN:
+            done = True
+ #   pygame.display.update()
+#    pygame.time.delay(100)
+pygame.quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
